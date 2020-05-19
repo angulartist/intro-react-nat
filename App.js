@@ -1,19 +1,30 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import Constants from 'expo-constants'
+import * as Permissions from 'expo-permissions'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
+
+import Navigator from './navigations';
+
+class App extends React.Component {
+    getPermissionAsync = async () => {
+        if (Constants.platform.ios) {
+            const {status} = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+            if (status !== 'granted') {
+                alert('Sorry, we need camera roll permissions to make this work!')
+            }
+        }
+    };
+
+
+    async componentDidMount() {
+        await this.getPermissionAsync();
+    }
+
+    render() {
+        return (
+            <Navigator/>
+        )
+    }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;

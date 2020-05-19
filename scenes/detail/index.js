@@ -4,7 +4,6 @@ import {useNavigationParam} from 'react-navigation-hooks'
 
 
 import {SharedElement} from 'react-navigation-shared-element';
-import {Colors} from "../../styles";
 import {CardOne, CardThree} from "react-native-card-ui";
 
 const DetailScreen = () => {
@@ -12,8 +11,7 @@ const DetailScreen = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <SharedElement id={`card-${item.key}`}
-                           onMoveToSourceWillStart={() => console.log('toto')}>
+            <SharedElement id={`card-${item.key}`}>
                 <CardOne
                     height={250}
                     width={300}
@@ -22,10 +20,6 @@ const DetailScreen = () => {
                     image={{uri: item.value.source}}
                 />
             </SharedElement>
-
-            {/*<SharedElement id={`label-${id}`}>*/}
-            {/*    <Text style={styles.cardStatus}>Dog</Text>*/}
-            {/*</SharedElement>*/}
 
             <View style={styles.listContainer}>
                 <FlatList
@@ -41,20 +35,6 @@ const DetailScreen = () => {
                     />}
                 />
             </View>
-
-
-            {/*<SharedElement style={{position: 'absolute', bottom: '10%'}} id='main-btn'>*/}
-            {/*    <AwesomeButton*/}
-
-            {/*        progress={false}*/}
-            {/*        strecth={true}*/}
-            {/*        backgroundColor={'#14213d'}*/}
-            {/*        borderRadius={10}*/}
-            {/*        elevation={6}*/}
-            {/*        onPress={() => navigation.navigate('Home')}>*/}
-            {/*        back*/}
-            {/*    </AwesomeButton>*/}
-            {/*</SharedElement>*/}
         </SafeAreaView>
     );
 };
@@ -80,22 +60,6 @@ const styles = StyleSheet.create({
     },
     listContainer: {
         marginTop: 20
-    },
-    card: {
-        maxHeight: 300,
-    },
-    cardImage: {
-        maxHeight: 300,
-        borderRadius: 10,
-        overflow: 'hidden'
-    },
-    cardStatus: {
-        height: 30,
-        backgroundColor: Colors.SUCCESS,
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 5,
-        borderRadius: 10
     }
 });
 
